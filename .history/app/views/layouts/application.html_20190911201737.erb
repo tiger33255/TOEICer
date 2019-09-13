@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TOEICer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <div class="wrapper">
+        <nav class="navbar fixed-top navbar-light" style="background-color: rgb(172, 213, 240);">
+          <div class="col-3">
+            <%= link_to "TOEICer", root_path, class: "navbar-brand", style: "font-size: 30px;" %>
+          </div>
+        </nav>
+      </div>
+        <% if user_signed_in? %>
+        <% end %>
+    <%= yield %>
+  </body>
+</html>

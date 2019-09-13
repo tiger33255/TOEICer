@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+  <head>
+    <title>TOEICer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="navbar navbar-light header w-100" style="background-color: rgb(172, 213, 240);">
+            <div class="col-xl-4 pl-4">
+              <%= link_to "TOEICer", root_path, class: "navbar-brand", style: "font-size: 55px;" %>
+            </div>
+            <div class="col-xl-4">
+              <form class="form-inline">
+                  <input type="search" class="form-control col-xl-9" placeholder="検索..." aria-label="検索...">
+                  <button type="submit" class="btn btn-primary col-xl-3">検索</button>
+              </form>
+            </div>
+            <div class="col-xl-4 ml-auto">
+              <div class="collapse navbar-collapse ml-auto" id="navbarNav">
+                <ul class="navbar-nav d-inline ml-auto">
+                    <% if user_signed_in? %>
+                      <li class="nav-item"><%= link_to " "+current_user.last_name+current_user.first_name+"さん", users_path, class:"fas fa-user nav-link", style: "padding-right: 5px;" %></li>
+                      <li class="nav-item"><%= link_to " "+"記事を書く！", new_article_path, class:"fas fa-pen-fancy nav-link" %></li>
+                      <li class="nav-item"><%= link_to " "+"ログアウト", destroy_user_session_path, :method => :delete, class:"fas fa-sign-out-alt nav-link" %></li>
+                    <% else %>
+                      <li class="nav-item m-4"><%= link_to " "+"サインイン", new_user_registration_path, class:"fas fa-user-plus nav-link" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"ログイン", new_user_session_path, class:"fas fa-sign-in-alt nav-link" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"このサイトについて", about_path, class: "fas fa-globe nav-link" %></li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+    <footer>
+      <div class="text-center" style="line-height: 80px;">&copy; TOEICer</div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

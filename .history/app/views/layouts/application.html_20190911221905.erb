@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TOEICer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <div class="container-fluid">
+        <div class="row d-flex">
+        <nav class="navbar fixed-top navbar-light header" style="background-color: rgb(172, 213, 240);">
+            <%= link_to "TOEICer", root_path, class: "navbar-brand ml-3", style: "font-size: 30px;" %>
+          <div class="d-flex align-self-center">
+            <form class="form-inline">
+                <input type="search" class="form-control col-4" placeholder="検索..." aria-label="検索...">
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+            </form>
+          </div>
+              <ul class="navbar-nav ml-auto"></ul>
+        </div>
+        </nav>
+      </div>
+    <%= yield %>
+    <footer>
+      <div class="text-center" style="line-height: 80px;">&copy; TOEICer</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+    <%=form_with model: article, local:true do |f| %>
+
+    <div class="field">
+        <%= f.label:タイトル,class: "" %><br>
+        <%= f.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+            <%= f.label:記事,class: "" %><br>
+            <%= f.text_field :body, autofocus: true %>
+        </div>
