@@ -26,7 +26,6 @@
    height: 100px;
 }
 
-
  .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
@@ -51,29 +50,34 @@
  }
 
  .post-form{
-   margin-bottom: 30px;
+    margin-bottom: 30px;
  }
 
  .article-title{
    margin-left: 115px;
    margin-bottom: 40px;
- }
+}
 
- .user-text{
-    font-size: 30px;
-    font-weight: bold;
+.user-text{
+   font-size: 30px;
+   font-weight: bold;
     margin-left: 5px;
 
  }
 
  .user-score{
-    font-size: 17px;
-    margin-left: 10px;
+   font-size: 17px;
+   margin-left: 10px;
+   }
+
+ .user-account{
+   margin-left: 10px;
  }
 
  .user-info{
     line-height: 55px;
  }
+
 
  .icon-hover {
    border-radius: 50%;
@@ -82,4 +86,28 @@
  .icon-hover:hover {
    cursor: pointer;
    transform: scale(1.1, 1.1);
+ }
+
+ .link{
+   text-decoration: none !important;
+   color: black;
+ }
+
+ .profile{
+   font-weight: bold;
+   line-height: 55px;
+ }
+
+ .score{
+    font-size: 23px;
+ }
+
+ .btn-prof{
+    border-radius: 30px;
+ }
+
+ .user-row{
+   animation-duration: 3s;
+   animation-name: slidein;
+   animation-iteration-count: 1;
  }

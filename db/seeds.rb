@@ -20,6 +20,17 @@ User.create!(
 )
 
 100.times do |i|
+    Article.create!(
+        id: "#{i+1}",
+        user_id: "0",
+        title: "Title #{i+1}",
+        body: "Body #{i+1}",
+    )
+end
+
+
+
+100.times do |i|
     gimei = Gimei.name
 
     User.create!(
@@ -32,6 +43,7 @@ User.create!(
     )
 
     Article.create!(
+        id: "#{i+1}",
         user_id: "#{i+1}",
         title: "Title #{i+1}",
         body: "Body #{i+1}",
