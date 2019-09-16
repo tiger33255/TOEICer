@@ -1,0 +1,33 @@
+    <%=form_with model:@article, local:true do |f| %>
+
+        <div class="mx-auto container">
+
+            <div class="field">
+                <%= f.label:タイトル,class: "" %><br>
+                <%= f.text_field :title, autofocus: true %>
+            </div>
+
+            <div id="editor"></div>
+  <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+  <script>
+    // エディタへの設定を適用する
+    CKEDITOR.replace('editor', {
+      uiColor: '#EEEEEE',
+      height: 400,
+    });
+  </script>
+
+            <div class="field">
+                <%= f.label :記事, class: "" %><br>
+                <%= f.text_area :body %>
+            </div>
+
+            <div class="field">
+                <%= f.attachment_field :article_image %>
+            </div>
+
+            <div class="actions text-right col-8 offset-md-3", style="margin-bottom: 60px; margin-top: 60px;">
+                    <%= f.submit "投稿", class: "btn btn-success mx-auto btn-lg" %>
+            </div>
+        </div>
+    <% end %>

@@ -1,0 +1,10 @@
+ja:
+  ckeditor:
+    confirm_delete: 'ファイルを削除してもよろしいですか？'
+    buttons:
+      cancel: 'キャンセル'
+      upload: 'アップロード'
+      delete: '削除'
+      next: '次へ'
+    dialog:
+      title: '画像'

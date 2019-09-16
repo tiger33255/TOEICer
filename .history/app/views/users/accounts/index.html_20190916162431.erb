@@ -1,0 +1,18 @@
+<h1>accounts#index</h1>
+
+<%= flash[:success] %>
+
+    <div class="container">
+        <div class="col-6 d-inline">
+            <%= attachment_image_tag @user, :user_image, fallback: "no_image.png",class: "rounded", style: "width: 220px; height: 220px;"%>
+        </div>
+
+        <div class="d-inline">
+            <div class="">
+                <strong>
+                    <%= current_user.nickname %>
+                </strong><br>
+                TOEIC score:<%= current_user.toeic_score %>point
+            </div>
+        </div>
+    </div>

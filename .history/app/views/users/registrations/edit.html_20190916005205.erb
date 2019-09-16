@@ -1,0 +1,82 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="mx-auto container">
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :image, "ユーザーアイコン" %><br>
+          <%= f.attachment_field :image, class: "btn btn-primary form-inline" %>
+      </div>
+
+      <div class="form-inline">
+        <div class="field col-5 col-md-offset-1">
+          <%= f.label :last_name, "名前（姓）", class: "float-left" %><br />
+          <%= f.text_field :last_name, autofocus: true, class: "col-auto form-control form-control-lg w-100", placeholder: "山田" %>
+        </div>
+
+        <div class="field col-5">
+          <%= f.label :first_name, "名前（名）", class: "float-left" %><br />
+          <%= f.text_field :first_name, class: "col-auto form-control form-control-lg w-100", placeholder: "太郎" %>
+        </div>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :nickname, "ニックネーム（記事投稿の際、使用させていただきます）" %><br />
+          <%= f.text_field :nickname, autocomplete: "nickname", class: "col-auto form-control form-control-lg w-100", placeholder: "たろちゃん"%>
+        </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :toeic_score, "TOEICスコア" %><br />
+          <%= f.text_field :toeic_score, autocomplete: "toeic_score", class: "col-auto form-control form-control-lg w-100", placeholder: "700"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autocomplete: "email", class: "col-auto form-control form-control-lg w-100", placeholder: "name@example.com"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+        <%= f.label :password, "パスワード（確認）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-auto form-control form-control-lg w-100" %>
+      </div>
+
+    <div class="field col-10 offset-md-1">
+      <%= f.label :password, "新しいパスワード" %><br />
+      <%= f.password_field :password,
+                  hint: "パスワードを変更しない場合、入力は不要です！！",
+                  required: false,
+                  input_html: { autocomplete: "new-password" },
+                  class: "col-auto form-control form-control-lg w-100" %>
+    </div>
+
+    <div class="field col-10 offset-md-1">
+      <%= f.label :password_confirmation, "新しいパスワード（確認）" %><br />
+      <%= f.password_field :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" },
+                  class: "col-auto form-control form-control-lg w-100" %>
+    </div>
+
+    <div class="field col-10 offset-md-1">
+      <%= f.label :current_password, "現在のパスワード" %><br />
+      <%= f.password_field :current_password,
+                  hint: "確認のため現在のパスワードを入力してください",
+                  required: true,
+                  input_html: { autocomplete: "current-password" },
+                  class: "col-auto form-control form-control-lg w-100" %>
+    </div>
+  </div>
+
+  <div class="actions text-right col-8 offset-md-3", style="margin-bottom: 60px; margin-top: 60px;">
+      <%= f.submit "編集", class: "btn btn-success mx-auto btn-lg" %>
+  </div>
+
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

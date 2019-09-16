@@ -1,0 +1,42 @@
+    <%=form_with model:@article, local:true do |f| %>
+
+        <div class="mx-auto container">
+
+            <div class="field col-6 post-form">
+                <%= f.label :アイキャッチ（画像の設定がない場合、デフォルトの画像が挿入されます） %><br>
+                <%= f.attachment_field :article_image, class: "btn btn-primary form-inline" %>
+            </div>
+
+            <div class="field col-7 post-form">
+                <%= f.label:タイトル %><br>
+                <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "例）1ヶ月でPart7攻略しよう！！" %>
+            </div>
+
+            <div class='field col-7 post-form'>
+                <%= f.label :タグ入力（Part1~7） %>
+                <%= f.text_field :tag_list, value: @article.tag_list.join(','), class: "form-control", placeholder: "キーワードごとに「 , 」（カンマ）で区切ってください" %>
+            </div>
+
+            <div class="field col-auto">
+                <%= f.label :記事 %><br>
+                <%= f.text_area :body, id: "editor" %>
+            </div>
+
+            <div class="actions text-right col-8 offset-md-4">
+                    <%= f.submit "投稿", class: "btn btn-success mx-auto btn-lg post" %>
+            </div>
+        </div>
+    <% end %>
+
+
+    <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
+    <script>
+            //エディタへの設定を適用する
+            CKEDITOR.replace('editor', {
+                language: 'ja',
+                uiColor: '#EEEEEE',
+                height: 400,
+              // webからコピペした際でもプレーンテキストを貼り付けるようにする
+                forcePasteAsPlainText: true,
+            });
+          </script>
