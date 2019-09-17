@@ -1,0 +1,69 @@
+<h3 style="padding-left: 205px; padding-top: 20px;">新規登録</h3>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <%= devise_error_messages! %>
+
+    <div class="mx-auto container">
+
+      <div class="form-inline">
+        <div class="field col-10 offset-md-1">
+            <%= f.label :user_image, "ユーザーアイコン" %><br>
+            <%= f.attachment_field :user_image, class: "btn btn-primary form-inline" %>
+        </div>
+
+        <div class="field col-5 col-md-offset-1">
+          <%= f.label :last_name, "名前（姓）", class: "float-left" %><br />
+          <%= f.text_field :last_name, autofocus: true, class: "col-auto form-control form-control-lg w-100", placeholder: "山田" %>
+        </div>
+
+        <div class="field col-5">
+          <%= f.label :first_name, "名前（名）", class: "float-left" %><br />
+          <%= f.text_field :first_name, class: "col-auto form-control form-control-lg w-100", placeholder: "太郎" %>
+        </div>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :nickname, "ニックネーム（ユーザーネームとして使用させていただきます）" %><br />
+          <%= f.text_field :nickname, autocomplete: "nickname", class: "col-auto form-control form-control-lg w-100", placeholder: "たろちゃん"%>
+        </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :toeic_score, "TOEICスコア（合計）" %><br />
+          <%= f.text_field :toeic_score, autocomplete: "toeic_score", class: "col-auto form-control form-control-lg w-100", placeholder: "700"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :reading_score, "リーディングスコア" %><br />
+          <%= f.text_field :reading_score, class: "col-auto form-control form-control-lg w-100", placeholder: "700"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :toeic_score, "リスニングスコア" %><br />
+          <%= f.text_field :toeic_score, class: "col-auto form-control form-control-lg w-100", placeholder: "700"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autocomplete: "email", class: "col-auto form-control form-control-lg w-100", placeholder: "name@example.com"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+        <%= f.label :password, "パスワード" %>
+        <% if @minimum_password_length %>
+        （<%= @minimum_password_length %> 文字以上入力してください）
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "col-auto form-control form-control-lg w-100" %>
+      </div>
+
+      <div class="field col-10 offset-md-1", style="margin-bottom: 50px;">
+        <%= f.label :password, "パスワード（確認）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-auto form-control form-control-lg w-100" %>
+      </div>
+
+
+      <div class="actions text-right col-8 offset-md-3", style="margin-bottom: 60px; margin-top: 60px;">
+          <%= f.submit "登録", class: "btn btn-success mx-auto btn-lg" %>
+      </div>
+    </div>
+<% end %>

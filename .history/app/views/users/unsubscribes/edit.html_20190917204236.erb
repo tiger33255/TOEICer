@@ -1,0 +1,17 @@
+<%= form_with url: users_unsubscribes_path, method: :delete, local:true do |f| %>
+
+    <div class="mx-auto container">
+        <div class="row">
+            <div class="col-3 d-block"></div>
+            <div class="field col-6">
+                <strong><%= f.label :パスワード　%><br/></strong>
+                <%= f.password_field :password, autofocus: true, autocomplete: "password", class: "form-control form-control-lg" %>
+            </div>
+            <div class="col-3"></div>
+
+            <div class="text-right col-10 d-inline-block">
+                <%= f.submit '退会', class: "btn btn-danger mx-auto btn-lg"%>
+            </div>
+        </div>
+    <% end %>
+    </div>
