@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="utf-8">
+  <head>
+    <title>TOEICer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <%= favicon_link_tag('favicon.ico') %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag('//cdn.ckeditor.com/4.11.4/full/ckeditor.js') %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container-fluid">
+        <header class="sticky-top">
+        <div class="row">
+          <nav class="navbar navbar-light header w-100">
+            <div class="col-xl-4 pl-4">
+              <%= link_to "TOEICer", root_path, class: "navbar-brand", style: "font-size: 55px;" %>
+            </div>
+            <div class="col-xl-4">
+              <form class="form-inline">
+                  <input type="search" class="form-control col-xl-8" placeholder="検索..." aria-label="検索...">
+                  <button type="submit" class="btn btn-primary col-xl-2 ml-3">検索</button>
+              </form>
+            </div>
+            <div class="col-xl-4 ml-auto">
+              <div class="collapse navbar-collapse ml-auto" id="navbarNav">
+                <ul class="navbar-nav d-inline ml-auto">
+                    <% if user_signed_in? %>
+                      <li class="nav-item m-4"><%= link_to " "+current_user.nickname+"さん", users_path, class:"fas fa-user nav-link text-dark", style: "padding-right: 5px;" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"記事を書く！", new_article_path, class:"fas fa-pencil-alt nav-link text-dark" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"ログアウト", destroy_user_session_path, :method => :delete, class:"fas fa-sign-out-alt nav-link text-dark" %></li>
+                    <% else %>
+                      <li class="nav-item m-4"><%= link_to " "+"サインイン", new_user_registration_path, class:"fas fa-user-plus nav-link text-dark" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"ログイン", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-dark" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"このサイトについて", toeic_about_path, class: "fas fa-globe nav-link text-dark" %></li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+    <footer class="footer">
+        <div class="container text-right">
+          <p class="text-muted footer-text">&copy; TOEICer All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    </body>
+</html>

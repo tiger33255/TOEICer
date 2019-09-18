@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="s-article col-auto d-inline-block clip-box-a">
+            <div class="d-inline-block ml-4 mt-4">
+                    <i class="far fa-clock"></i>
+                    <%= l @article.created_at, format: :short %>
+            </div>
+            <div class="s-title">
+                <%= @article.title %>
+            </div>
+            <div class="d-inline-block ml-3">
+                <div class="part_list d-block ml-3 mt-5 my-2">
+                <% if @article.part_list.present? %>
+                    <% @article.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                <% else %>
+                <% end %>
+                </div>
+
+                <div class="key_word_list d-block ml-3 mt-4">
+                    <% if @article.key_word_list.present? %>
+                        <% @article.key_word_list.each do |tag| %>
+                            <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                        <% end %>
+                    <% else %>
+                    <% end %>
+                </div>
+                <h3>いいね件数: <%= @post.likes.count %></h3>
+<% if current_user.already_liked?(@post) %>
+  <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
+<% else %>
+  <%= button_to 'いいね', post_likes_path(@post) %>
+<% end %>
+<h2>いいねしたユーザー</h2>
+<% @post.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+            </div>
+            <%= raw @article.body %>
+        </div>
+    </div>
+</div>

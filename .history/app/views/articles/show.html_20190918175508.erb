@@ -1,0 +1,10 @@
+<h1>Articles#show</h1>
+<p>Find me in app/views/articles/show.html.erb</p>
+<div class="container">
+    <div class="row mb-4">
+        <div class="s-title col-auto d-inline-block">
+            <div><%= @article.title %></div>
+            <%= @article.body.html_safe %>
+        </div>
+    </div>
+</div>
