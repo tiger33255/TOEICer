@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-auto d-inline-block clip-box-a" style="color: black;">
+            <div class="d-inline-block col-12 ml-4 mt-4">
+                <i class="far fa-clock"></i>
+                <%= l @article.created_at, format: :short %>
+                    <div class="d-inline-block ml-3">
+                        <i class="fas fa-sync-alt"></i>
+                        <%= l @article.updated_at %>
+                    </div>
+                <div id="likes_buttons_<%=@article.id%>" class="float-right mr-5 d-inline">
+                    <%= render partial: 'likes/like', locals: { article: @article, likes: @like} %>
+                </div>
+            </div>
+            <div class="s-title ml-5 mt-4">
+                <%= @article.title %>
+            </div>
+            <div class="d-block ml-4">
+                <div class="part_list d-block ml-3 mt-5 my-2">
+                <% if @article.part_list.present? %>
+                    <% @article.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                <% else %>
+                <% end %>
+                </div>
+
+                <div class="d-block key_word_list d-block ml-3 mt-4">
+                    <% if @article.key_word_list.present? %>
+                        <% @article.key_word_list.each do |tag| %>
+                            <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                        <% end %>
+                    <% else %>
+                    <% end %>
+                </div>
+            </div>
+
+                <div class="Twitter d-inline-block">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
+            <div class="d-block">
+            <%= raw @article.body %>
+            </div>
+        </div>
+    </div>
+</div>

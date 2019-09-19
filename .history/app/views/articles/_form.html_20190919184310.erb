@@ -1,0 +1,66 @@
+    <%=form_with model:@article, local:true do |f| %>
+
+        <div class="mx-auto container">
+
+            <div class="field col-6 post-form">
+                <%= f.label :アイキャッチ（画像の設定がない場合、デフォルトの画像が挿入されます） %><br>
+                <%= f.attachment_field :article_image, class: "btn btn-primary form-inline" %>
+            </div>
+
+            <div class="field col-7 post-form">
+                <%= f.label :タイトル %><br>
+                <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "例）1ヶ月でPart7攻略しよう！！" %>
+            </div>
+
+            <div class='field col-7 post-form'>
+                <%= f.label :part_list, "タグ(Part)　※キーワードごとに「 , 」（カンマ）で区切ってください" %><br>
+                <%= f.text_field :part_list, value: @article.part_list.join(','), class: "form-control", placeholder: "Partの番号のみ入力してください　例) 3,4" %>
+            </div>
+
+            <div class='field col-7 post-form'>
+                <%= f.label :key_word_list, "タグ(キーワード)　※キーワードごとに「 , 」（カンマ）で区切ってください" %><br>
+                <%= f.text_field :key_word_list, value: @article.key_word_list.join(','), class: "form-control", placeholder: "リスニング,短期間" %>
+            </div>
+
+            <div class="field col-auto">
+                <%= f.label :記事 %><br>
+                <%= f.text_area :body, id: "editor" %>
+            </div>
+
+            <div class="actions text-right col-8 offset-md-4">
+                    <%= f.submit "投稿", class: "btn btn-success mx-auto btn-lg post" %>
+            </div>
+        </div>
+    <% end %>
+
+    <script>
+            //エディタへの設定を適用する
+            CKEDITOR.replace('editor', {
+                language: 'ja',
+                uiColor: '#EEEEEE',
+                height: 400,
+                //ツールバーグループのカスタマイズ
+                toolbarGroups: [
+                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                { name: 'links', groups: [ 'links' ] },
+                { name: 'insert', groups: [ 'insert' ] },
+                '/',
+                { name: 'styles', groups: [ 'styles' ] },
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'colors', groups: [ 'colors' ] },
+                { name: 'tools', groups: [ 'tools' ] },
+                { name: 'others', groups: [ 'others' ] },
+                { name: 'about', groups: [ 'about' ] },
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] }
+                ],
+                //不要なボタンを削除
+                removeButtons: 'Source,Save,NewPage,' +
+                'Find,Replace,SelectAll,Scayt,Cut,Styles,Font,' +
+                'Copy,Paste,PasteText,PasteFromWord,BidiLtr,Smiley,' +
+                'BidiRtl,Language,Unlink,Anchor,Flash,Outdent,Indent,' +
+                'PageBreak,CreateDiv,RemoveFormat,' +
+                'Superscript,Subscript,Strike,Form,Checkbox,Radio,TextField,' +
+                'Textarea,Select,Button,ImageButton,HiddenField,ShowBlocks,About,SpecialChar',
+            });
+    </script>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-auto d-inline-block clip-box-a" style="color: black;">
+            <div class="d-inline-block ml-4 mt-4">
+                    <i class="far fa-clock"></i>
+                    <%= l @article.created_at, format: :short %>
+            </div>
+            <div class="s-title ml-5">
+                <%= @article.title %>
+            </div>
+            <div class="d-inline-block ml-3">
+                <div class="part_list d-block ml-3 mt-5 my-2">
+                <% if @article.part_list.present? %>
+                    <% @article.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                <% else %>
+                <% end %>
+                </div>
+
+                <div class="key_word_list d-block ml-3 mt-4">
+                    <% if @article.key_word_list.present? %>
+                        <% @article.key_word_list.each do |tag| %>
+                            <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                        <% end %>
+                    <% else %>
+                    <% end %>
+                </div>
+                <h3>いいね件数: <%= @article.likes.count %></h3>
+
+                <div id="likes_buttons_<%=@article.id%>">
+                    <%= render partial: 'likes/like', locals: { article: @article, likes: @like} %>
+                </div>
+<h2>いいねしたユーザー</h2>
+<% @article.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+            </div>
+            <%= raw @article.body %>
+        </div>
+    </div>
+</div>
