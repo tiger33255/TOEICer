@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+      <% @user.all_following.each do |user| %>
+        <%= link_to(user_path(user), class: 'link') do %>
+      <div class="m-5 d-block d-inline d-flex align-items-center">
+        <div class="col-4"></div>
+        <div class="d-inline col-3 mr-5">
+            <% if user.user_image.present? %>
+              <%= attachment_image_tag user, :user_image, class: "img-circle icon-hover link", style: "width: 195px; height: 195px;"%>
+          <% else %>
+              <%= attachment_image_tag user, :user_image, fallback: "no_image.png", class: "img-circle user-hover link", style: "width: 165px; height: 165px;"%>
+          <% end %>
+        </div>
+
+        <div class="d-inline col-9">
+          <div class="f-name">
+            <%= user.nickname %>
+          </div>
+          <div class="f-score">
+              <% if @user.toeic_score <= 400 %>
+                  <%= image_tag 'first.png', size: '40x40' %>
+              <% elsif @user.toeic_score <= 600 && @user.toeic_score >= 400 %>
+                  <%= image_tag 'second.png', size: '40x40' %>
+              <% else %>
+                  <%= image_tag 'top.png', size: '40x40' %>
+              <% end %>
+              <p class="d-inline mr-4 ml-1 link">TOEIC SCORE<p class="t-score d-inline high-light link"><%= @user.toeic_score %></p></p>
+
+              <%= image_tag 'read.png', size: '37x35', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-2 link"> READING SCORE</p><p class="score d-inline link"><%= @user.reading_score %></p>
+
+              <%= image_tag 'listen.png', size: '35x35', class: "ml-3 mb-3 d-inline" %><p class="d-inline mr-3 link"> LISTENING SCORE</p>
+              <p class="score d-inline link"><%= @user.listening_score %></p>
+          </div>
+        </div>
+      </div>
+        <% end %>
+        <% end %>
+    </div>
+  </div>
