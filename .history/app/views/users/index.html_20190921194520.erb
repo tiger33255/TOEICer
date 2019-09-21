@@ -1,0 +1,29 @@
+<div class="container-fluid">
+ <div class="row">
+<%= image_tag 'quote.jpg', size: "1440x700" %>
+ </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <% @all_ranks.each do |rank| %>
+    <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+      <div class="top-article article d-block col-4 text-center">
+        <% if rank.part_list.present? %>
+          <% rank.part_list.each do |tag| %>
+            <%= link_to "Part"+tag, tag_path(tag), class: "label label-success article-tag" %>
+          <% end %>
+        <% else %>
+        <% end %>
+          <% if rank.article_image.present? %>
+            <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "300x200" %>
+          <% else %>
+            <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "250x150" %>
+      </div>
+          <% end %>
+          <div>
+            <%= rank.title %>
+          </div>
+        <% end %>
+        <% end %>
+      </div>
+</div>

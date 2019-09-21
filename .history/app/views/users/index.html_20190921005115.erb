@@ -1,0 +1,39 @@
+やほー
+<div id="carouselOption1" class="carousel slide" data-ride="carousel">
+    <!-- インジケータの設定 -->
+    <ol class="carousel-indicators">
+      <li data-target="#carouselOption1" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselOption1" data-slide-to="1"></li>
+      <li data-target="#carouselOption1" data-slide-to="2"></li>
+    </ol>
+    <!-- スライドさせる画像の設定 -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'user_icon.png', size: '50x50' %>        <div class="carousel-caption d-none d-md-block">
+          <h5>第1スライド見出し</h5>
+          <p>スライドイメージの紹介</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'user_icon.png', size: '50x50' %>        <div class="carousel-caption d-none d-md-block">
+          <h5>第2スライド見出し</h5>
+          <p>スライドイメージの紹介</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'user_icon.png', size: '50x50' %>        <div class="carousel-caption d-none d-md-block">
+          <h5>第3スライド見出し</h5>
+          <p>スライドイメージの紹介</p>
+        </div>
+      </div>
+    </div>
+    <!-- スライドコントロールの設定 -->
+    <a class="carousel-control-prev" href="#carouselOption1" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">前へ</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselOption1" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">次へ</span>
+    </a>
+  </div>

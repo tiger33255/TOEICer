@@ -1,16 +1,15 @@
-class Users::AccountsController < ApplicationController
-
+class UsersController < ApplicationController
     def index
-        @user = current_user
-        @articles = Article.page(params[:page]).per(5).order(id: "DESC")
+        @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(6).pluck(:article_id))
     end
 
     def show
-        @user = User.find(params[:user_id])
-        @articles = Article.page(params[:page]).per(5).order(id: "DESC")
+        @user = User.find(params[:id])
+        @self_articles = Article.all
+        @articles = @user.articles.page(params[:page]).per(5).order(id: "DESC")
     end
 
-    #以下のアクションはacts_as_followのため作成
+    #このコントローラーはgem acts_as_follow のため作成
     #フォローする
     def follow
         @user = User.find(params[:user_id])
@@ -36,9 +35,7 @@ class Users::AccountsController < ApplicationController
     end
 
 private
-
     def user_params
-        params.require(:user).permit(:last_name, :first_name, :nickname, :toeic_score, :user_image)
+        params.require(:user).permit(:last_name, :first_name, :nickname, :toeic_score, :reading_score, :listening_score, :user_image)
     end
-
 end
