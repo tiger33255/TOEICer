@@ -1,0 +1,39 @@
+<h1>accounts#index</h1>
+
+<%= flash[:success] %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3 ml-5 d-inline">
+                <%= attachment_image_tag @user, :user_image, fallback: "no_image.png", class: "img-circle icon-hover", style: "width: 210px; height: 210px;"%>
+            </div>
+
+            <div class="col-3 ml-5 d-inline-block user-info">
+                <div>
+                    <div class="user-text">
+                        <%= image_tag 'user_icon.png', size: '40x40' %> <%= current_user.nickname %><br>
+                    </div>
+
+                    <div class="user-score">
+                        <% if current_user.toeic_score <= 400 %>
+                            <%= image_tag 'first.png', size: '30x30' %>　TOEIC SCORE: <%= current_user.toeic_score %> point</i>
+                        <% elsif current_user.toeic_score <= 600 && current_user.toeic_score >= 400 %>
+                            <%= image_tag 'second.png', size: '30x30' %>　TOEIC SCORE: <%= current_user.toeic_score %> point</i>
+                        <% else %>
+                            <%= image_tag 'top.png', size: '30x30' %>　TOEIC SCORE: <%= current_user.toeic_score %> point</>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <%= @user.follow_count %>
+            <%= link_to "フォロー", {controller: :users,action: :follow_list,user_id: @user.id}, method: :get %>
+            <!-- クリックすると、フォローリストに飛ぶ -->
+            <%= @user.followers_count %>
+            <%= link_to "フォロワー", {controller: :users,action: :follower_list,user_id: @user.id}, method: :get %>
+            <!-- #クリックすると、フォロワーリストに飛ぶ -->
+
+            <% if current_user.id != @user.id %>
+            <%= render 'follow_form' %>
+            <% end %>
+        </div>
+    </div>

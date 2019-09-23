@@ -1,0 +1,48 @@
+<div class="container follow">
+    <p class="t-theme ml-3 mt-5 col-3">Following</p>
+
+  <div class="row">
+    <% if @user.all_following.present? %>
+    <% @user.all_following.each do |user| %>
+      <%= link_to(user_path(user), class: 'link') do %>
+
+    <div class="col-auto m-4 p-5 d-block d-flex align-items-center animated flipInY" style="margin-left: 30px;">
+      <div class="d-block col-3 offset-3 mr-5 ml-4">
+          <% if user.user_image.present? %>
+            <%= attachment_image_tag user, :user_image, class: "img-circle icon-hover link", style: "width: 120px; height: 120px;"%>
+        <% else %>
+            <%= attachment_image_tag user, :user_image, fallback: "no_image.png", class: "img-circle user-hover link", style: "width: 120px; height: 120px;"%>
+        <% end %>
+      </div>
+
+      <div class="d-inline">
+        <div class="f-name d-inline">
+            <%= image_tag 'user_icon.png', size: '35x35' %>
+            <%= user.nickname %>
+        </div>
+        <div class="f-score d-inline ml-5">
+            <% if user.toeic_score <= 400 %>
+                <%= image_tag 'first.png', size: '43x43' %>
+            <% elsif user.toeic_score <= 600 && user.toeic_score >= 400 %>
+                <%= image_tag 'second.png', size: '43x43' %>
+            <% else %>
+                <%= image_tag 'top.png', size: '45x45' %>
+            <% end %>
+            <p class="d-inline mr-4 ml-1 link">TOEIC SCORE<p class="t-score d-inline high-light link"><%= user.toeic_score %></p></p>
+
+            <% if user.reading_score && user.listening_score.present? %>
+              <%= image_tag 'read.png', size: '30x30', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-2 link"> READING SCORE</p><p class="score d-inline link"><%= user.reading_score %></p>
+
+              <%= image_tag 'listen.png', size: '30x30', class: "ml-3 mb-3 d-inline" %><p class="d-inline mr-3 link"> LISTENING SCORE</p>
+              <p class="score d-inline link"><%= user.listening_score %></p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+      <% end %>
+      <% end %>
+  </div>
+</div>
+<% else %>
+<p>友達ない</p>
+<% end %>

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-auto d-inline-block clip-box-a" style="color: black;">
+            <div class="d-inline-block col-12 ml-4 mt-4">
+                <i class="far fa-clock"></i>
+                <%= l @article.created_at, format: :short %>
+                    <div class="d-inline-block ml-3">
+                        <i class="fas fa-sync-alt"></i>
+                        <%= l @article.updated_at %>
+                    </div>
+                <% if @user.present? %>
+                <div id="likes_buttons_<%=@article.id%>" class="float-right mr-5 d-inline">
+                    <%= render partial: 'likes/like', locals: { user: current_user, article: @article, likes: @like} %>
+                    <% if current_user.id == @user.id %>
+                        <div class="d-inline-block ml-4">
+                            <%= link_to  image_tag("edit.png", width: '17', height: '17', alt: "edit_icon"), edit_user_article_path(@user,@article.id), class: "btn btn-normal icon-hover" %>
+                            <%= link_to  image_tag("delete.png", width: '17', height: '17', alt: "delete_icon"), user_article_path(@user,@article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="s-title ml-5 mt-4">
+                <%= @article.title %>
+            </div>
+            <div class="d-block d-inline ml-4">
+                <div class="part_list d-block ml-3 mt-5 my-2">
+                <% if @article.part_list.present? %>
+                    <% @article.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                <% else %>
+                <% end %>
+                </div>
+
+                <div class="d-block key_word_list d-block ml-3 mt-4">
+                    <% if @article.key_word_list.present? %>
+                        <% @article.key_word_list.each do |tag| %>
+                            <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                        <% end %>
+                    <% else %>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="Twitter d-inline float-right mr-5">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            <div class="d-block">
+            <%= raw @article.body %>
+            </div>
+        </div>
+    </div>
+</div>

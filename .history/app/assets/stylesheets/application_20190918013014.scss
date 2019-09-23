@@ -1,0 +1,177 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*= require font-awesome
+ */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "font-awesome";
+
+
+*{
+   font-family: 'Oswald', "Noto Sans JP", sans-serif;
+}
+//application.html.erb
+.header{
+   height: 100px;
+}
+
+ .wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 60px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+ }
+
+ footer{
+    width: 100%;
+    background-color: #696969;
+    color: #fff;
+    text-align: center;
+    padding: 0px 0;
+
+ position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+ }
+
+ /*フォーム全体*/
+#form1{
+   position:relative;/*フォームの相対位置*/
+   max-width:270px;/*フォームのサイズ*/
+   margin-bottom:15px;/*フォームの下に余白*/
+   }
+   /*検索ボックス*/
+   #sbox{
+   position:absolute;/*フォームの絶対位置*/
+   left:0;
+   top:0;
+   outline:0;/*クリック時の青い枠線消す*/
+   height:50px;/*検索ボックスの高さ*/
+   padding:0 10px;/*テキスト位置調整*/
+   border-radius:2px 0 0 2px;/*検索ボックスの角を丸める*/
+   background:#eee;/*検索ボックスの背景カラー*/
+   }
+   /*検索ボタン*/
+   #sbtn{
+   width:70px;/*検索ボタンの横幅*/
+   height:50px;/*検索ボタンの縦幅*/
+   position:absolute;/*検索ボタンの絶対位置*/
+   left:270px;/*検索ボタンの位置調整*/
+   top:0;
+   border-radius:0 2px 2px 0;/*検索ボタンの角を丸める*/
+   background:#7fbfff;/*検索ボタンの背景カラー*/
+   border:none;/*検索ボタンの枠線を消す*/
+   color:#fff;/*検索ボタンのテキストカラー*/
+   font-weight:bold;/*検索ボタンのテキスト太字*/
+   font-size:16px;/*検索ボタンのフォントサイズ*/
+   }
+   /*検索ボタンマウスオーバー時*/
+   #sbtn:hover{
+   color:#666;/*検索ボタンマウスオーバー時のフォントカラー*/
+   }
+
+// article
+ .post{
+   margin-bottom: 60px;
+   margin-top: 60px;
+ }
+
+ .post-form{
+    margin-bottom: 30px;
+ }
+
+ .article-title{
+   margin-left: 115px;
+   margin-bottom: 40px;
+}
+
+.user-text{
+   font-size: 30px;
+   font-weight: bold;
+    margin-left: 5px;
+
+ }
+
+ .user-score{
+   font-size: 17px;
+   margin-left: 10px;
+   }
+
+ .user-account{
+   margin-left: 10px;
+ }
+
+ .user-info{
+    line-height: 55px;
+ }
+
+ .user-detail{
+    margin-left: 40px;
+ }
+
+ .user-hover {
+   border-radius: 50%;
+   transition: all 0.6s ease 0s;
+ }
+ .user-hover:hover {
+   cursor: pointer;
+   transform: scale(1.1, 1.1);
+ }
+
+ .icon-hover {
+   transition: all 0.6s ease 0s;
+ }
+ .icon-hover:hover {
+   cursor: pointer;
+   transform: scale(1.3, 1.3);
+ }
+
+ .link{
+   text-decoration: none !important;
+   color: black;
+ }
+
+ .profile{
+   font-weight: bold;
+   line-height: 55px;
+ }
+
+ .score{
+    font-size: 23px;
+ }
+
+ .btn-prof{
+    border-radius: 30px;
+    color: #fff;
+    background: rgb(26, 141, 150);
+    border-color: rgb(26, 141, 150);
+ }
+
+ .user-row{
+   animation-duration: 3s;
+   animation-name: slidein;
+   animation-iteration-count: 1;
+ }
+
+ .article{
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+ }
+
+ .user_article_title{
+    font-size: 20px;
+    margin-left: 25px;
+ }
+
+ .unsub{
+    margin-top: 200px;
+ }

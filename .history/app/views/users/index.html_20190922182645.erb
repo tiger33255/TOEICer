@@ -1,0 +1,67 @@
+  <% @results.each do |s| %>
+    <%= s.title %>
+  <% end %>
+  <div class="top-img">
+    <%= image_tag 'quote.jpg', size: "1440x700" %>
+    <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline" %>
+  </div>
+  <div class="container top mt-5">
+    <p class="t-theme ml-5">POPULAR</p>
+      <div class="row">
+        <% @all_ranks.each do |rank| %>
+          <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+            <div class="article popular d-inline-block col-3 m-4 rounded hover">
+                <% if rank.article_image.present? %>
+                  <div class="mt-3">
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
+                  </div>
+                  <% else %>
+                  <div class="mt-3">
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
+                  </div>
+                <% end %>
+                <% if rank.part_list.present? %>
+                  <div class="d-block ml-4 mt-4">
+                    <% rank.part_list.each do |tag| %>
+                      <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                  </div>
+                  <% else %>
+                  <% end %>
+              <div class="col mt-3 mb-5 t-title">
+                <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <p class="t-theme ml-5 mt-5">NEW ARTICLE</p>
+      <div class="row">
+          <% @new_articles.each do |rank| %>
+            <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+              <div class="article popular d-inline-block col-3 m-4 hover">
+                  <% if rank.article_image.present? %>
+                    <div class="mt-3">
+                      <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
+                    </div>
+                    <% else %>
+                    <div class="mt-3">
+                      <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
+                    </div>
+                  <% end %>
+                  <% if rank.part_list.present? %>
+                    <div class="d-block ml-4 mt-4">
+                      <% rank.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                      <% end %>
+                    </div>
+                    <% else %>
+                    <% end %>
+                <div class="col mt-5 mb-5 t-title">
+                  <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+  </div>

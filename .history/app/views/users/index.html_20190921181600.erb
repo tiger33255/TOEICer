@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <% @all_ranks.each do |rank| %>
+        <%= link_to(user_article_path(article.user_id,article.id), class: 'link') do %>
+          <% if article.article_image.present? %>
+              <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "180x180" %>
+          <% else %>
+              <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "180x180" %>
+          <% end %>
+            <%= rank.article_image %>
+            <%= rank.title %>
+        <% end %>
+      <% end %>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>

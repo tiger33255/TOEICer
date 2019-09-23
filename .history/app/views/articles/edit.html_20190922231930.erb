@@ -1,0 +1,7 @@
+<% if flash[:alert] %>
+    <div class="alert alert-danger text-center" role="alert"><strong><%= flash[:alert] %></strong></div>
+<% end %>
+
+<h2 class="article-title">記事編集ページ</h2>
+
+<%= render 'form' %>

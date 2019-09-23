@@ -1,0 +1,28 @@
+<h1>accounts#index</h1>
+
+<%= flash[:success] %>
+
+    <div class="container">
+        <div class="col-6 d-inline">
+            <%= attachment_image_tag @user, :user_image, fallback: "no_image.png", class: "img-circle icon-hover", style: "width: 210px; height: 210px;"%>
+        </div>
+
+        <div class="d-inline-block">
+            <div>
+                <div class="user-text">
+                    <i class="fas fa-user"></i>
+                    <%= current_user.nickname %><br>
+                </div>
+
+                <div class="user-scores">
+                    <% if current_user.toeic_score <= 400 %>
+                        <i class="far fa-star">TOEIC SCORE: <%= current_user.toeic_score %> point</i>
+                    <% elsif current_user.toeic_score <= 600 && current_user.toeic_score >= 400 %>
+                        <i class="fas fa-star-half-alt">TOEIC SCORE: <%= current_user.toeic_score %> point</i>
+                    <% else %>
+                    <i class="fas fa-star">TOEIC SCORE: <%= current_user.toeic_score %> point</i>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>

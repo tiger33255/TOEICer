@@ -1,0 +1,105 @@
+<%= flash[:success] %>
+
+    <div class="container">
+        <div class="row user-row">
+            <div class="col-2"></div>
+            <div class="col-3 ml-5 d-inline">
+                <% if current_user.user_image.present? %>
+                    <%= attachment_image_tag @user, :user_image, class: "img-circle icon-hover", style: "width: 195px; height: 195px;"%>
+                <% else %>
+                    <%= attachment_image_tag @user, :user_image, fallback: "no_image.png", class: "img-circle user-hover", style: "width: 165px; height: 165px;"%>
+                <% end %>
+            </div>
+
+            <div class="col-5 ml-5 d-block user-info w-100">
+                <div>
+                    <div class="user-text">
+                        <%= image_tag 'user_icon.png', size: '40x40' %> <%= current_user.nickname %><br>
+                    </div>
+
+                    <div class="user-score">
+                        <% if current_user.toeic_score <= 400 %>
+                            <%= image_tag 'first.png', size: '30x30' %>
+                        <% elsif current_user.toeic_score <= 600 && current_user.toeic_score >= 400 %>
+                            <%= image_tag 'second.png', size: '30x30' %>
+                        <% else %>
+                            <%= image_tag 'top.png', size: '30x30' %>
+                        <% end %>
+                        <p class="d-inline">TOEIC SCORE : <p class="score d-inline"><%= current_user.toeic_score %></p> point</p>
+
+                        <%= image_tag 'read.png', size: '30x30' %><p class="d-inline">　READING SCORE : </p><p class="score d-inline"><%= current_user.reading_score %></p>
+
+                        <%= image_tag 'listen.png', size: '25x25', class: "ml-3 mb-2 d-inline" %><p class="d-inline">　LISTENING SCORE : </p>
+                        <p class="score d-inline"><%= current_user.listening_score %></p>
+                    </div>
+
+                    <div class="user-account">
+                        <%= @user.follow_count %>
+                        <%= link_to "フォロー", {controller: :accounts,action: :follow_list,user_id: @user.id}, method: :get, class: "link" %>
+                        <%= @user.followers_count %>
+                        <%= link_to "フォロワー", {controller: :accounts,action: :follower_list,user_id: @user.id}, method: :get, class: "link" %>
+
+                        <% if current_user.id != @user.id %>
+                        <%= render 'follow_form' %>
+                        <% end %>
+                    </div>
+
+                    <div class="profile">
+                        <%= link_to  "プロフィールを編集", edit_user_registration_path, class: "btn btn-info btn-prof" %>
+                    </div>
+                </div>
+            </div>
+            <div class="row account-article d-block ml-5 w-100 mx-auto">
+                <% @articles.each do |article| %>
+
+                    <div class="d-block d-inline m-5 p-5 article d-flex align-items-center">
+                    <%= link_to(article_path(article), class: 'link') do %>
+                            <% if article.article_image.present? %>
+                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "260x220" %>
+                            <% else %>
+                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "260x220" %>
+                            <% end %>
+                            <div class="d-inline-block col-9">
+                                <div class="d-block ml-4">
+                                    <i class="far fa-clock"></i>
+                                    <%= l article.created_at, format: :short %>
+                                </div>
+                                <div class="d-block user_article_title">
+                                    <%= article.title %>
+                                </div>
+                                <div class="article-tag mt-5">
+                                    <div class="part_list d-block ml-3 mt-5 my-2">
+                                    <% if article.part_list.present? %>
+                                        <% article.part_list.each do |tag| %>
+                                            <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                                        <% end %>
+                                    <% else %>
+                                    <% end %>
+                                    </div>
+
+                                    <div class="key_word_list d-block ml-3 mt-4">
+                                        <% if article.key_word_list.present? %>
+                                            <% article.key_word_list.each do |tag| %>
+                                                <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                                            <% end %>
+                                        <% else %>
+                                        <% end %>
+                                    </div>
+                                    <div class="d-block text-right">
+                                        <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "edit_icon"), edit_article_path(article), class: "btn btn-normal icon-hover" %>
+                                        <%= link_to  image_tag("delete.png", width: '20', height: '20', alt: "delete_icon"), article_path(article), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+                <div class="text-center">
+                    <%= paginate @articles %>
+                </div>
+            </div>
+            <div class="mb-5 col text-right">
+                <%= link_to "退会手続きはこちらから", edit_users_unsubscribes_path %>
+            </div>
+        </div>
+    </div>

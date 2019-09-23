@@ -1,2 +1,0 @@
-class LikedUser < ApplicationRecord
-end

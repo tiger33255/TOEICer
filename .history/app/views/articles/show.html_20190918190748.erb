@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="s-article col-auto d-inline-block clip-box-a">
+            <div class="s-title mb-5">
+                <%= @article.title %>
+            </div>
+            <div class="d-block ml-4">
+                <i class="far fa-clock"></i>
+                <%= l @article.created_at, format: :short %>
+            </div>
+            <%= raw @article.body %>
+        </div>
+    </div>
+</div>

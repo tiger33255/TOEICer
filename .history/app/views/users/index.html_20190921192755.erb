@@ -1,0 +1,21 @@
+<div class="container-fluid">
+ <div class="row">
+<%= image_tag 'quote.jpg', size: "1440x700" %>
+ </div>
+</div>
+<div class="container">
+  <div class="row">
+    <% @all_ranks.each do |rank| %>
+    <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+      <div class="d-inline-block d-block">
+          <% if rank.article_image.present? %>
+            <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "250x200" %>
+          <% else %>
+            <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "250x150" %>
+          <% end %>
+            <%= rank.title %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

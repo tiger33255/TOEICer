@@ -1,0 +1,78 @@
+<%= flash[:success] %>
+
+    <div class="container">
+        <div class="row user-row">
+            <div class="col-3 ml-5 d-inline">
+                <% if current_user.user_image.present? %>
+                    <%= attachment_image_tag @user, :user_image, class: "img-circle icon-hover", style: "width: 195px; height: 195px;"%>
+                <% else %>
+                    <%= attachment_image_tag @user, :user_image, fallback: "no_image.png", class: "img-circle user-hover", style: "width: 165px; height: 165px;"%>
+                <% end %>
+            </div>
+
+            <div class="col-5 ml-5 d-block user-info">
+                <div>
+                    <div class="user-text">
+                        <%= image_tag 'user_icon.png', size: '40x40' %> <%= current_user.nickname %><br>
+                    </div>
+
+                    <div class="user-score">
+                        <% if current_user.toeic_score <= 400 %>
+                            <%= image_tag 'first.png', size: '30x30' %>
+                        <% elsif current_user.toeic_score <= 600 && current_user.toeic_score >= 400 %>
+                            <%= image_tag 'second.png', size: '30x30' %>
+                        <% else %>
+                            <%= image_tag 'top.png', size: '30x30' %>
+                        <% end %>
+                        　<p class="d-inline">TOEIC SCORE : <p class="score d-inline"><%= current_user.toeic_score %></p> point</p>
+                    </div>
+
+                    <div class="user-account">
+                        <%= @user.follow_count %>
+                        <%= link_to "フォロー", {controller: :accounts,action: :follow_list,user_id: @user.id}, method: :get, class: "link" %>
+                        <%= @user.followers_count %>
+                        <%= link_to "フォロワー", {controller: :accounts,action: :follower_list,user_id: @user.id}, method: :get, class: "link" %>
+
+                        <% if current_user.id != @user.id %>
+                        <%= render 'follow_form' %>
+                        <% end %>
+                    </div>
+
+                    <div class="profile">
+                        <%= link_to  "プロフィールを編集", edit_user_registration_path, class: "btn btn-info btn-prof" %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row account-article d-block ml-5 col-auto">
+                <% @articles.each do |article| %>
+
+                    <div class="d-block d-inline m-5 p-5 article">
+                        <%= link_to(article_path(article), class: 'link') do %>
+                            <% if article.article_image.present? %>
+                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "20x20" %>
+                            <% else %>
+                                <%= attachment_image_tag article, :article_image, fallback: "article_eyecatch.png", class: "rounded", size: "170x170" %>
+                            <% end %>
+                            <div class="d-inline-block">
+                                <div class="d-block ml-4">
+                                    <i class="far fa-clock"></i>
+                                    <%= l article.created_at, format: :short %>
+                                </div>
+                                <div class="d-block user_article_title">
+                                    <%= article.title %>
+                                </div>
+                            </div>
+                            <div class="d-block">
+                                <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "edit_icon"), edit_article_path(article), class: "btn btn-normal icon-hover" %>
+                                <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "delete_icon"), article_path(article), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+                <div class="mx-auto">
+                    <%= paginate @articles %>
+                </div>
+            </div>
+        </div>
+    </div>

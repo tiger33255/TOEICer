@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <% @user.all_following.each do |user| %>
+      <div class="f-image">
+        <% if user.user_image.present? %>
+          <%= attachment_image_tag user, :user_image, class: "img-circle icon-hover", style: "width: 195px; height: 195px;"%>
+      <% else %>
+          <%= attachment_image_tag user, :user_image, fallback: "no_image.png", class: "img-circle user-hover", style: "width: 165px; height: 165px;"%>
+      <% end %>
+      </div>
+
+      <%= user.nickname %>
+      <%= link_to '詳細', user_path(user) %>
+    <% end %>
+  </div>
+</div>

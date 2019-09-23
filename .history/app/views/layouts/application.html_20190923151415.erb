@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="utf-8">
+  <head>
+    <title>TOEICer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <%= favicon_link_tag('favicon.ico') %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag('//cdn.ckeditor.com/4.11.4/full/ckeditor.js') %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container-fluid">
+        <header class="sticky-top">
+        <div class="row mt-3">
+          <nav class="navbar navbar-light header w-100">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-3 header-img">
+              <%= link_to image_tag("logo.png", width: '210', height: '90', alt: "logo.png"), root_path, class: "navbar-brand header-img" %>
+            </div>
+            <div class="col-4 float-right">
+              <form class="form-inline">
+                <%= search_form_for @search, url: root_path do |f| %>
+                  <%= f.search_field :title_cont, placeholder: "Search...", class: "search form-control col-md-8" %>
+                  <%= f.submit "Go", class: "btn btn-transparent search-btn col-2 ml-3" %>
+                <% end %>
+              </form>
+            </div>
+            <div class="col-xl-4 ml-auto">
+              <div class="collapse navbar-collapse ml-auto" id="navbarNav">
+                <ul class="navbar-nav d-inline ml-auto">
+                    <% if user_signed_in? %>
+                      <li class="nav-item m-4"><%= link_to image_tag("user_icon.png", width: '25', height: '25', alt: "user_icon.png")+" "+current_user.nickname+"　", user_path(current_user), class:"nav-link text-dark underline", style: "font-size: 16px;" %></li>
+                      <li class="nav-item m-4"><%= link_to image_tag("write.png", width: '21', height: '21', alt: "write.png")+" "+"Write　", new_user_article_path(current_user.id), class:"nav-link text-dark underline" %></li>
+                      <li class="nav-item m-4"><%= link_to image_tag("exit.png", width: '21', height: '21', alt: "exit.png")+" "+"Log out　", destroy_user_session_path, :method => :delete, class:"nav-link text-dark underline" %></li>
+                    <% else %>
+                      <li class="nav-item m-4"><%= link_to " "+"サインイン　", new_user_registration_path, class:"fas fa-user-plus nav-link text-dark underline" %></li>
+                      <li class="nav-item m-4"><%= link_to " "+"ログイン　", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-dark underline" %></li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+    <footer class="footer">
+        <div class="container text-right">
+          <p class="text-muted footer-text">&copy; TOEICer All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

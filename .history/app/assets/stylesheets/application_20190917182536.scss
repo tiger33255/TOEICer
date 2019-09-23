@@ -1,0 +1,140 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*= require font-awesome
+ */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "font-awesome";
+
+
+*{
+   font-family: 'Oswald', "Noto Sans JP", sans-serif;
+}
+
+.header{
+   height: 100px;
+}
+
+ .wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 60px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+ }
+
+ footer{
+    width: 100%;
+    background-color: #696969;
+    color: #fff;
+    text-align: center;
+    padding: 0px 0;
+
+ position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+ }
+
+ .post{
+   margin-bottom: 60px;
+   margin-top: 60px;
+ }
+
+ .post-form{
+    margin-bottom: 30px;
+ }
+
+ .article-title{
+   margin-left: 115px;
+   margin-bottom: 40px;
+}
+
+.user-text{
+   font-size: 30px;
+   font-weight: bold;
+    margin-left: 5px;
+
+ }
+
+ .user-score{
+   font-size: 17px;
+   margin-left: 10px;
+   }
+
+ .user-account{
+   margin-left: 10px;
+ }
+
+ .user-info{
+    line-height: 55px;
+ }
+
+ .user-detail{
+    margin-left: 40px;
+ }
+
+
+ .icon-hover {
+   border-radius: 50%;
+   transition: all 0.6s ease 0s;
+ }
+ .icon-hover:hover {
+   cursor: pointer;
+   transform: scale(1.1, 1.1);
+ }
+
+ .link{
+   text-decoration: none !important;
+   color: black;
+ }
+
+ .profile{
+   font-weight: bold;
+   line-height: 55px;
+ }
+
+ .score{
+    font-size: 23px;
+ }
+
+ .btn-prof{
+    border-radius: 30px;
+ }
+
+ .user-row{
+   animation-duration: 3s;
+   animation-name: slidein;
+   animation-iteration-count: 1;
+ }
+
+ .article{
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+ }
+
+ .user_article_title{
+    font-size: 20px;
+    margin-left: 25px;
+ }
+
+ .edit-btn {
+   display: inline-block;
+   padding: 0.6em 2em;
+   margin: 0 0 1em;
+   background: #fff;
+   color: #333;
+   cursor: pointer;
+   transition: all 0.3s ease 0s;
+ }
+ .edit-btn:hover {
+   background: rgb(89, 221, 84);
+   color: #fff;
+ }

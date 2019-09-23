@@ -1,0 +1,23 @@
+    <%=form_with model:@article, local:true do |f| %>
+
+        <div class="mx-auto container">
+
+            <div class="field">
+                <%= f.label:タイトル,class: "" %><br>
+                <%= f.text_field :title, autofocus: true %>
+            </div>
+
+            <div class="field">
+                <%= f.label :記事, class: "" %><br>
+                <%= f.text_area :body, 'data-provider': :summernote %>
+            </div>
+
+            <div class="field">
+                <%= f.attachment_field :article_image %>
+            </div>
+
+            <div class="actions text-right col-8 offset-md-3", style="margin-bottom: 60px; margin-top: 60px;">
+                    <%= f.submit "投稿", class: "btn btn-success mx-auto btn-lg" %>
+            </div>
+        </div>
+    <% end %>

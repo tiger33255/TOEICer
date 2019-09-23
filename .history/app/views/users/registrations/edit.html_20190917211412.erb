@@ -1,0 +1,55 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="mx-auto container">
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :user_image, "ユーザーアイコン" %><br>
+          <%= f.attachment_field :user_image, class: "btn btn-primary form-inline" %>
+      </div>
+
+      <div class="form-inline">
+        <div class="field col-5 col-md-offset-1">
+          <%= f.label :last_name, "名前（姓）", class: "float-left" %><br />
+          <%= f.text_field :last_name, autofocus: true, class: "col-auto form-control form-control-lg w-100", placeholder: "山田" %>
+        </div>
+
+        <div class="field col-5">
+          <%= f.label :first_name, "名前（名）", class: "float-left" %><br />
+          <%= f.text_field :first_name, class: "col-auto form-control form-control-lg w-100", placeholder: "太郎" %>
+        </div>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :nickname, "ニックネーム（ユーザーネームとして使用させていただきます）" %><br />
+          <%= f.text_field :nickname, autocomplete: "nickname", class: "col-auto form-control form-control-lg w-100", placeholder: "たろちゃん"%>
+        </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :toeic_score, "TOEICスコア" %><br />
+          <%= f.text_field :toeic_score, autocomplete: "toeic_score", class: "col-auto form-control form-control-lg w-100", placeholder: "700"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :reading_score, "リーディングスコア" %><br />
+          <%= f.text_field :reading_score, class: "col-auto form-control form-control-lg w-100", placeholder: "350"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+          <%= f.label :listening_score, "リスニングスコア" %><br />
+          <%= f.text_field :listening_score, class: "col-auto form-control form-control-lg w-100", placeholder: "350"%>
+      </div>
+
+      <div class="field col-10 offset-md-1">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autocomplete: "email", class: "col-auto form-control form-control-lg w-100", placeholder: "name@example.com"%>
+      </div>
+
+  <div class="actions text-right col-10", style="margin-bottom: 60px; margin-top: 60px;">
+      <%= f.submit "編集", class: "btn btn-success mx-auto btn-lg" %>
+  </div>
+  </div>
+
+<% end %>

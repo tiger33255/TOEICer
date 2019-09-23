@@ -1,0 +1,9 @@
+<% if current_user.already_liked?(@article) %>
+  <div>
+    <%= link_to image_tag("de_good.png", width: '20', height: '20', alt: "de_good_icon"), article_like_path(@article.id,@like.id), method: :delete, remote: true %>
+  </div>
+<% else %>
+  <div>
+    <%= link_to image_tag("good.png", width: '20', height: '20', alt: "good_icon"), article_likes_path(@article), method: :post, remote: true %>
+  </div>
+<% end %>

@@ -1,0 +1,117 @@
+  <% if params[:q] %>
+    <% @results.each do |article| %>
+    <%= link_to(user_article_path(article.user_id,article.id), class: 'link') do %>
+            <div class="d-block d-inline m-5 p-5 article d-flex align-items-center hover">
+                <% if article.article_image.present? %>
+                    <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "280x220" %>
+                <% else %>
+                    <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "280x220" %>
+                <% end %>
+                <div class="d-inline-block col-9">
+                    <div class="d-block ml-4">
+                        <i class="far fa-clock"></i>
+                        <%= l article.created_at, format: :short %>
+                    </div>
+                    <div class="d-block user_article_title">
+                        <%= "【"+article.title+"】" %>
+                    </div>
+                    <div class="article-tag mt-5">
+                        <div class="part_list d-block ml-3 mt-5 my-2">
+                        <% if article.part_list.present? %>
+                            <% article.part_list.each do |tag| %>
+                                <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                            <% end %>
+                        <% else %>
+                        <% end %>
+                        </div>
+
+                        <div class="key_word_list d-block ml-3 mt-4">
+                            <% if article.key_word_list.present? %>
+                                <% article.key_word_list.each do |tag| %>
+                                    <%= link_to tag, tag_path(tag), class: "label label-info" %>
+                                <% end %>
+                            <% else %>
+                            <% end %>
+                        </div>
+                        <% if current_user.id == article.user_id %>
+                        <div class="d-block text-right">
+                            <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "edit_icon"), edit_user_article_path(@user,article.id), class: "btn btn-normal icon-hover" %>
+                            <%= link_to  image_tag("delete.png", width: '20', height: '20', alt: "delete_icon"), user_article_path(@user,article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
+                        </div>
+                        <% else %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+
+
+
+
+  <% else %>
+  <div class="top-img">
+    <%= image_tag 'quote.jpg', size: "1440x700" %>
+    <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline" %>
+  </div>
+  <div class="container top mt-5">
+    <p class="t-theme ml-5">POPULAR</p>
+      <div class="row">
+        <% @all_ranks.each do |rank| %>
+          <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+            <div class="article popular d-inline-block col-3 m-4 rounded hover">
+                <% if rank.article_image.present? %>
+                  <div class="mt-3">
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
+                  </div>
+                  <% else %>
+                  <div class="mt-3">
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
+                  </div>
+                <% end %>
+                <% if rank.part_list.present? %>
+                  <div class="d-block ml-4 mt-4">
+                    <% rank.part_list.each do |tag| %>
+                      <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                    <% end %>
+                  </div>
+                  <% else %>
+                  <% end %>
+              <div class="col mt-3 mb-5 t-title">
+                <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <p class="t-theme ml-5 mt-5">NEW ARTICLE</p>
+      <div class="row">
+          <% @new_articles.each do |rank| %>
+            <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+              <div class="article popular d-inline-block col-3 m-4 hover">
+                  <% if rank.article_image.present? %>
+                    <div class="mt-3">
+                      <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
+                    </div>
+                    <% else %>
+                    <div class="mt-3">
+                      <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
+                    </div>
+                  <% end %>
+                  <% if rank.part_list.present? %>
+                    <div class="d-block ml-4 mt-4">
+                      <% rank.part_list.each do |tag| %>
+                        <%= link_to "Part"+tag, tag_path(tag), class: "label label-success" %>
+                      <% end %>
+                    </div>
+                    <% else %>
+                    <% end %>
+                <div class="col mt-5 mb-5 t-title">
+                  <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+  </div>
+<% end %>
