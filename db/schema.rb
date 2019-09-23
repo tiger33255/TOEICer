@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_143734) do
+ActiveRecord::Schema.define(version: 2019_09_23_081931) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2019_09_21_143734) do
     t.index ["article_image_id"], name: "index_articles_on_article_image_id"
     t.index ["body"], name: "index_articles_on_body"
     t.index ["title"], name: "index_articles_on_title"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
   create_table "follows", force: :cascade do |t|
