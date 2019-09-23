@@ -14,14 +14,14 @@
                     <% end %>
                 </div>
                     <% if user_signed_in? && current_user.id == @user.id %>
-                        <div class="d-inline-block ml-4">
+                        <div class="d-inline-block ml-4 p-3">
                             <%= link_to  image_tag("edit.png", width: '17', height: '17', alt: "edit_icon"), edit_user_article_path(@user,@article.id), class: "btn btn-normal icon-hover" %>
                             <%= link_to  image_tag("delete.png", width: '17', height: '17', alt: "delete_icon"), user_article_path(@user,@article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
                         </div>
                     <% end %>
             </div>
             <div class="s-title ml-5 mt-4">
-                <%= "【"+@article.title+"】" %>
+                <%= @article.title %>
             </div>
             <div class="d-block d-inline ml-4">
                 <div class="part_list d-block ml-3 mt-5 my-2">

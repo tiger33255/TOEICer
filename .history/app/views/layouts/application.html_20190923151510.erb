@@ -30,7 +30,7 @@
               <form class="form-inline">
                 <%= search_form_for @search, url: root_path do |f| %>
                   <%= f.search_field :title_cont, placeholder: "Search...", class: "search form-control col-md-8" %>
-                  <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit",:class =>"btn btn-transparent search-btn col-2 ml-3" %>
+                  <%= f.submit "検索", class: "btn btn-transparent search-btn col-2 ml-3" %>
                 <% end %>
               </form>
             </div>
@@ -41,9 +41,6 @@
                       <li class="nav-item m-4"><%= link_to image_tag("user_icon.png", width: '25', height: '25', alt: "user_icon.png")+" "+current_user.nickname+"　", user_path(current_user), class:"nav-link text-dark underline", style: "font-size: 16px;" %></li>
                       <li class="nav-item m-4"><%= link_to image_tag("write.png", width: '21', height: '21', alt: "write.png")+" "+"Write　", new_user_article_path(current_user.id), class:"nav-link text-dark underline" %></li>
                       <li class="nav-item m-4"><%= link_to image_tag("exit.png", width: '21', height: '21', alt: "exit.png")+" "+"Log out　", destroy_user_session_path, :method => :delete, class:"nav-link text-dark underline" %></li>
-                      <% if current_user.try(:admin?) %>
-                        <li class="nav-item m-4"><%= link_to image_tag("admin.png", width: '21', height: '21', alt: "exit.png")+" "+"Admin　", rails_admin_path, class:"nav-link text-dark underline" %></li>
-                      <% end %>
                     <% else %>
                       <li class="nav-item m-4"><%= link_to " "+"サインイン　", new_user_registration_path, class:"fas fa-user-plus nav-link text-dark underline" %></li>
                       <li class="nav-item m-4"><%= link_to " "+"ログイン　", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-dark underline" %></li>

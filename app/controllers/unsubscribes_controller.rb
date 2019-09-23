@@ -1,4 +1,4 @@
-class Users::UnsubscribesController < ApplicationController
+class UnsubscribesController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])

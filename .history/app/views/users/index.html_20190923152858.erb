@@ -56,11 +56,11 @@
             <div class="article popular d-inline-block col-3 m-4 rounded hover">
                 <% if rank.article_image.present? %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x170" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
                   </div>
                   <% else %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x170" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
                   </div>
                 <% end %>
                 <% if rank.part_list.present? %>

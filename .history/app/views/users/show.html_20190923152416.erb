@@ -7,7 +7,7 @@
 <div class="container">
         <div class="row user-row">
             <div class="col-2"></div>
-            <div class="col-3 ml-4 d-inline animated jackInTheBox text-center" style="margin-top: 75px;">
+            <div class="col-3 ml-5 mt-5 d-inline animated jackInTheBox">
                 <% if @user.user_image.present? %>
                     <%= attachment_image_tag @user, :user_image, class: "img-circle icon-hover", style: "width: 195px; height: 195px;"%>
                 <% else %>
@@ -105,10 +105,10 @@
                                         <% end %>
                                     </div>
                                     <% if current_user.id == article.user_id %>
-                                        <div class="d-block text-right">
-                                            <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "edit_icon"), edit_user_article_path(@user,article.id), class: "btn btn-normal icon-hover" %>
-                                            <%= link_to  image_tag("delete.png", width: '20', height: '20', alt: "delete_icon"), user_article_path(@user,article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
-                                        </div>
+                                    <div class="d-block text-right">
+                                        <%= link_to  image_tag("edit.png", width: '20', height: '20', alt: "edit_icon"), edit_user_article_path(@user,article.id), class: "btn btn-normal icon-hover" %>
+                                        <%= link_to  image_tag("delete.png", width: '20', height: '20', alt: "delete_icon"), user_article_path(@user,article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
+                                    </div>
                                     <% end %>
                                 </div>
                             </div>
