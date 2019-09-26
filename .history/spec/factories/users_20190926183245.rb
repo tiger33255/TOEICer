@@ -1,0 +1,9 @@
+FactoryBot.define do
+  factory :user do
+    email: "test1@test.com"
+    password: "111111"
+    first_name: "田中"
+    last_name: "太郎"
+    nickname: "タロちゃん"
+  end
+end
