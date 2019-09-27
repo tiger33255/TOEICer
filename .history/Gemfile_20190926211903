@@ -55,7 +55,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  # gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -106,8 +106,6 @@ gem 'gimei'
 gem 'json'
 
 gem 'mysql2'
-
-gem 'listen', '>= 3.0.5', '< 3.2'
 
 # ckeditorを利用する為のgem
 gem 'carrierwave'
