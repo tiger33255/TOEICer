@@ -3,11 +3,11 @@
 ![TOEICer](http://toeicer.info/images/logo.png "TOEICer")
 
 ## **Description**
----
+
 ### TOEICer is web servise for everyone who want to a impeccable study method
 
 ## Features
----
+
 ### Only you have to do is that you sign in and you can use some features
 
 1. Write an article
