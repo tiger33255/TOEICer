@@ -348,6 +348,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel-serializers-xml (= 1.0.2)
   acts-as-taggable-on (~> 6.0)
   acts_as_follower!
   bootsnap (>= 1.1.0)

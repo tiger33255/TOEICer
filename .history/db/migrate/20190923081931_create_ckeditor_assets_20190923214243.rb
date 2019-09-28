@@ -2,7 +2,7 @@
 
 class CreateCkeditorAssets < ActiveRecord::Migration[5.2]
   def up
-    create_table :ckeditor_assets, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
+    create_table :ckeditor_assets do |t|
       t.string  :data_file_name, null: false
       t.string  :data_content_type
       t.integer :data_file_size

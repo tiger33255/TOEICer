@@ -106,4 +106,4 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'ckeditor'
 
-gem 'activemodel-serializers-xml', '1.0.2'
+gem 'activemodel-serializers-xml'

@@ -4,7 +4,7 @@ if ActiveRecord.gem_version >= Gem::Version.new('5.0')
 else
   class AddMissingIndexesOnTaggings < ActiveRecord::Migration; end
 end
-AddMissingIndexesOnTaggings.class_eval, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do
+AddMissingIndexesOnTaggings.class_eval do
   def change
     add_index :taggings, :tag_id unless index_exists? :taggings, :tag_id
     add_index :taggings, :taggable_id unless index_exists? :taggings, :taggable_id
