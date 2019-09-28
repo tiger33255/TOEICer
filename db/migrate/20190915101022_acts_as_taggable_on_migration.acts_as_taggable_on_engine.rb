@@ -4,13 +4,13 @@ if ActiveRecord.gem_version >= Gem::Version.new('5.0')
 else
   class ActsAsTaggableOnMigration < ActiveRecord::Migration; end
 end
-ActsAsTaggableOnMigration.class_eval, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do
+ActsAsTaggableOnMigration.class_eval do
   def self.up
-    create_table :tags do |t|
+    create_table :tags, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.string :name
     end
 
-    create_table :taggings do |t|
+    create_table :taggings, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.references :tag
 
       # You should make sure that the column created is

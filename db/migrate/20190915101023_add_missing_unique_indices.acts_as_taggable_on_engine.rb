@@ -4,7 +4,7 @@ if ActiveRecord.gem_version >= Gem::Version.new('5.0')
 else
   class AddMissingUniqueIndices < ActiveRecord::Migration; end
 end
-AddMissingUniqueIndices.class_eval, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do
+AddMissingUniqueIndices.class_eval do
   def self.up
     add_index :tags, :name, unique: true
 
