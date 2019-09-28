@@ -11,7 +11,7 @@
               <% if article.article_image.present? %>
                   <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "280x220" %>
               <% else %>
-                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "280x220" %>
+                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "280x220" %>
               <% end %>
               <div class="d-inline-block col-9">
                 <div class="d-block ml-4" style= "color: black;">
@@ -47,7 +47,7 @@
       </div>
   <% else %>
   <div class="top-img">
-    <%= image_tag 'quote.jpg', size: "1440x700" %>
+    <%= image_tag '/images/quote.jpg', size: "1440x700" %>
     <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline" %>
   </div>
   <div class="container top mt-5">
@@ -62,7 +62,7 @@
                   </div>
                   <% else %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x170" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "230x170" %>
                   </div>
                 <% end %>
                 <% if rank.part_list.present? %>
@@ -97,7 +97,7 @@
                   </div>
                   <% else %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "article_eyecatch.png", class: "rounded", size: "230x190" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "230x190" %>
                   </div>
                 <% end %>
                 <% if rank.part_list.present? %>

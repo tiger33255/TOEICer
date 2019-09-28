@@ -20,8 +20,8 @@
                     </div>
                     <% if user_signed_in? && current_user.id == @user.id %>
                     <div class="d-inline-block ml-4">
-                        <%= link_to  image_tag("edit.png", width: '17', height: '17', alt: "edit_icon"), edit_user_article_path(@user,@article.id), class: "btn btn-normal icon-hover" %>
-                        <%= link_to  image_tag("delete.png", width: '17', height: '17', alt: "delete_icon"), user_article_path(@user,@article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
+                        <%= link_to  image_tag("/images/edit.png", width: '17', height: '17', alt: "edit_icon"), edit_user_article_path(@user,@article.id), class: "btn btn-normal icon-hover" %>
+                        <%= link_to  image_tag("/images/delete.png", width: '17', height: '17', alt: "delete_icon"), user_article_path(@user,@article.id), method: :'delete',"data-confirm" => "本当に削除しますか？", class: "btn btn-normal icon-hover" %>
                     </div>
                     <% end %>
             </div>

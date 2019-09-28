@@ -15,23 +15,23 @@
 
               <div class="d-inline">
                 <div class="f-name d-inline">
-                    <%= image_tag 'user_icon.png', size: '35x35' %>
+                    <%= image_tag '/images/user_icon.png', size: '35x35' %>
                     <%= user.nickname %>
                 </div>
                 <div class="f-score d-inline ml-5">
                     <% if user.toeic_score <= 400 %>
-                      <%= image_tag 'first.png', size: '43x43' %>
+                      <%= image_tag '/images/first.png', size: '43x43' %>
                     <% elsif user.toeic_score <= 600 && user.toeic_score >= 400 %>
-                      <%= image_tag 'second.png', size: '43x43' %>
+                      <%= image_tag '/images/second.png', size: '43x43' %>
                     <% else %>
-                      <%= image_tag 'top.png', size: '45x45' %>
+                      <%= image_tag '/images/top.png', size: '45x45' %>
                     <% end %>
                     <p class="d-inline mr-4 ml-1 link">TOEIC SCORE<p class="t-score d-inline high-light link"><%= user.toeic_score %></p></p>
 
                     <% if user.reading_score && user.listening_score.present? %>
-                      <%= image_tag 'read.png', size: '30x30', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-2 link"> READING SCORE</p><p class="score d-inline link"><%= user.reading_score %></p>
+                      <%= image_tag '/images/read.png', size: '30x30', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-2 link"> READING SCORE</p><p class="score d-inline link"><%= user.reading_score %></p>
 
-                      <%= image_tag 'listen.png', size: '30x30', class: "ml-3 mb-3 d-inline" %><p class="d-inline mr-3 link"> LISTENING SCORE</p>
+                      <%= image_tag '/images/listen.png', size: '30x30', class: "ml-3 mb-3 d-inline" %><p class="d-inline mr-3 link"> LISTENING SCORE</p>
                       <p class="score d-inline link"><%= user.listening_score %></p>
                     <% end %>
                 </div>
