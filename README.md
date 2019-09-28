@@ -1,24 +1,25 @@
-# README
+# **TOEICer**  <http://toeicer.info/>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![TOEICer](http://toeicer.info/images/logo.png "TOEICer")
 
-Things you may want to cover:
+## **Description**
+---
+### TOEICer is web servise for everyone who want to a impeccable study method
 
-* Ruby version
+## Features
+---
+### Only you have to do is that you sign in and you can use some features
 
-* System dependencies
+1. Write an article
+ * if you have original study methods for TOEIC,plese write an article.
+ The article you wrote might make someone get high score...
 
-* Configuration
+2. My page
+ * you can put your TOEIC score(total,reading,listenig) on your page and if you have high score,we give you a special icon!
 
-* Database creation
+ * My page has follow function which can easily access to each users articles
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Good! botton
+ * if you get curious or impressed, you can put Good! on each articles. 
+ The articles you put Good! could be viewable from My page.
+ 
