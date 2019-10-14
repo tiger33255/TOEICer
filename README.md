@@ -4,7 +4,7 @@
 
 ## **Description**
 
-### TOEICer is web servise for everyone who want to know a impeccable study method
+### This is web servise for everyone who want to know a impeccable study method of TOEIC
 
 ## Features
 
