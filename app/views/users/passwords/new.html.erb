@@ -4,17 +4,17 @@
   </div>
     <div class= "container password">
       <div class="mt-5">
-        <div class="field col-7 offset-md-2">
+        <div class="field col-11 offset-1 col-lg-8 offset-lg-2">
           <%= f.label :email, "メールアドレスを入力ください" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg w-100" %>
         </div>
 
-        <div class="actions text-right col-9 mt-md-5">
+        <div class="actions text-right col-11 offset-1 col-lg-8 offset-lg-2 mt-5">
           <%= f.submit "送信", class: "btn u-btn mx-auto btn-lg" %>
         </div>
     </div>
   <% end %>
-    <div class="col-9 mt-md-3 text-right">
+    <div class="col-11 offset-1 col-lg-8 offset-lg-2 mt-3 text-right">
         <%= render "users/shared/links"%>
     </div>
 	  </div>

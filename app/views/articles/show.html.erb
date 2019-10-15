@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row mb-4">
         <div class="col-auto d-inline-block clip-box-a" style="color: black;">
             <%= link_to(user_path(@article.user_id), class: "link") do %>
@@ -26,7 +26,7 @@
                     <% end %>
             </div>
             <div class="s-title ml-5 mt-2">
-                <%= "【"+@article.title+"】" %>
+                <%= @article.title %>
             </div>
             <div class="d-block d-inline ml-4">
                 <div class="part_list d-block ml-3 mt-5 my-2">

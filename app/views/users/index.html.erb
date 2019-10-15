@@ -1,28 +1,31 @@
   <% if params[:q] %>
+  <div class="container mt-5">
     <p class="t-theme ml-3 mt-5 col-3">Search Result</p>
+      <div class="row ml-md-5">
         <% if @results.blank? %>
           <div>
             <p class= "follow-list text-center mt-5">すみません！検索結果はありません。</p>
           </div>
         <% end %>
         <% @results.each do |article| %>
+        <div class="article col-12 col-lg-5 m-lg-4 rounded hover">
           <%= link_to(user_article_path(article.user_id,article.id), class: 'link') do %>
-            <div class="d-block d-inline m-5 p-5 article d-flex align-items-center hover">
               <% if article.article_image.present? %>
-                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "280x220" %>
+                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded img-fluid", size: "280x220" %>
               <% else %>
-                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "280x220" %>
+                  <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded img-fluid", size: "280x220" %>
               <% end %>
-              <div class="d-inline-block col-9">
-                <div class="d-block ml-4" style= "color: black;">
+              <div class="d-inline-block col-12">
+                <div class="d-block mt-2" style= "color: black;">
                   <i class="far fa-clock"></i>
                   <%= l article.created_at, format: :short %>
+                  <div class="d-inline-block ml-3 ">
+                      <i class="fas fa-sync-alt"></i>
+                      <%= l article.updated_at, format: :short %>
+                  </div>
                 </div>
-                <div class="d-block mt-3 user_article_title">
-                  <%= "【"+article.title+"】" %>
-                </div>
-                <div class="article-tag mt-5">
-                  <div class="part_list d-block ml-3 mt-5 my-2">
+                <div class="article-tag mt-1">
+                  <div class="part_list d-block my-2">
                   <% if article.part_list.present? %>
                     <% article.part_list.each do |tag| %>
                       <div class="label label-success">Part<%= tag %></div>
@@ -30,41 +33,55 @@
                   <% end %>
                   </div>
 
-                    <div class="key_word_list d-block ml-3 mt-4">
+                    <div class="key_word_list d-block mt-2">
                         <% if article.key_word_list.present? %>
                             <% article.key_word_list.each do |tag| %>
                               <div class="label label-info"><%= tag %></div>
                             <% end %>
                         <% end %>
                     </div>
+                    <div class="d-block mt-3 mb-3 user_article_title">
+                        <%= article.title %>
+                    </div>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
-      <div class="text-center">
+      <div class="text-center col-12 d-block">
           <%= paginate @results %>
       </div>
+      </div>
+      </div>
+
   <% else %>
-  <div class="top-img">
+  <div class="top-img d-none d-lg-block">
     <%= image_tag '/images/quote.jpg', size: "1440x700" %>
-    <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline" %>
+    <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline t-about" %>
   </div>
-  <div class="container top mt-5">
+  <div class="container mt-5">
     <p class="t-theme ml-5">POPULAR</p>
-      <div class="row">
+      <div class="row ml-md-5">
         <% @all_ranks.each do |rank| %>
-          <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
-            <div class="article popular d-inline-block col-3 m-4 rounded hover">
+        <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
+            <div class="article article-sh col-12 col-lg-5 m-lg-4 rounded hover">
                 <% if rank.article_image.present? %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x170" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "article-sh rounded img-fluid", size: "230x170" %>
                   </div>
                   <% else %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "230x170" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "article-sh rounded img-fluid", size: "230x170" %>
                   </div>
                 <% end %>
+                  <div class="d-block" style= "color: black;">
+                    <i class="far fa-clock ml-1 mt-2"></i>
+                    <%= l rank.created_at, format: :short %>
+                    <div class="d-inline-block ml-3">
+                      <i class="fas fa-sync-alt"></i>
+                      <%= l rank.updated_at, format: :short %>
+                    </div>
+                  </div>
                 <% if rank.part_list.present? %>
                   <div class="d-block ml-1 mt-3">
                     <% rank.part_list.each do |tag| %>
@@ -79,27 +96,35 @@
                     </div>
                   </div>
                 <% end %>
-              <div class="col mt-3 mb-5 t-title">
-                <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+              <div class="mt-3 mb-3 t-title">
+                <%= link_to rank.title, user_article_path(rank.user_id,rank.id), class: "link" %>
               </div>
             </div>
           <% end %>
         <% end %>
       </div>
     <p class="t-theme ml-5 mt-5">NEW ARTICLE</p>
-      <div class="row">
+      <div class="row ml-md-5">
         <% @new_articles.each do |rank| %>
           <%= link_to(user_article_path(rank.user_id,rank.id), class: 'link') do %>
-            <div class="article popular d-inline-block col-3 m-4 hover">
+            <div class="article col-12 col-lg-5 m-lg-4 rounded hover">
                 <% if rank.article_image.present? %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "rounded", size: "230x190" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', class: "article-sh rounded img-fluid", size: "230x170" %>
                   </div>
                   <% else %>
                   <div class="mt-3">
-                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "230x190" %>
+                    <%= attachment_image_tag rank, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "article-sh rounded img-fluid", size: "230x170" %>
                   </div>
                 <% end %>
+                <div class="d-block ml-1 mt-2" style= "color: black;">
+                  <i class="far fa-clock"></i>
+                  <%= l rank.created_at, format: :short %>
+                  <div class="d-inline-block ml-3">
+                      <i class="fas fa-sync-alt"></i>
+                      <%= l rank.updated_at, format: :short %>
+                  </div>
+                </div>
                 <% if rank.part_list.present? %>
                   <div class="d-block ml-1 mt-3">
                     <% rank.part_list.each do |tag| %>
@@ -114,8 +139,8 @@
                     </div>
                   </div>
                   <% end %>
-              <div class="col mt-5 mb-5 t-title">
-                <%= link_to "【"+rank.title+"】", user_article_path(rank.user_id,rank.id), class: "link" %>
+              <div class="mt-3 mb-3 t-title">
+                <%= link_to rank.title, user_article_path(rank.user_id,rank.id), class: "link" %>
               </div>
             </div>
           <% end %>

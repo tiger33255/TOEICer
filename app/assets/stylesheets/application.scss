@@ -77,8 +77,8 @@
   box-shadow: 0 0 0 0 #fff;
   border-radius: 0%;
   border-bottom: 0.1875em solid rgb(0, 0, 0);
-
 }
+
 // article#show
   h1 {
     margin-bottom: 45px;
@@ -208,9 +208,13 @@
    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
  }
 
+ .article-sh {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  width: 100%;
+ }
+
  .user_article_title{
-   font-size: 25px;
-   margin-left: 5px;
+   font-size: 20px;
    color: black;
  }
 
@@ -231,7 +235,7 @@
   z-index: 1;
   border-style: solid;
   border-color: #f39800 transparent;
-  border-width: 0 10px 10px 10px;
+  border-width: 0 10px 12px 10px;
   top: -10px;
   left: 6%;
   margin-left: -10px;
@@ -387,8 +391,9 @@
   .top{
     margin: 0 80px 0 250px;
   }
+
   .t-title{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 900;
   }
   .top-img {
@@ -397,7 +402,11 @@
 
   .top-img a {
     font-size: 50px;
-    color: #464545;
+    color: #f7b500;
+    text-shadow: 1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
     position: absolute;
     top: 75%;
     left: 72%;

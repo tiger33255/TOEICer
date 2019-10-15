@@ -5,17 +5,17 @@
     <div class="alert alert-danger text-center" role="alert"><strong><%= flash[:alert] %></strong></div>
 <% end %>
 <div class="container">
-        <div class="row user-row">
-            <div class="col-2"></div>
-            <div class="col-3 ml-4 d-inline animated jackInTheBox text-center" style="margin-top: 75px;">
+        <div class="row user-row mt-5">
+            <div class="col-lg-2"></div>
+            <div class="col-5 col-lg-4 ml-2 mr-lg-5 ml-lg-3 mb-lg-5 d-inline animated jackInTheBox" style="margin-top: 75px;">
                 <% if @user.user_image.present? %>
-                    <%= attachment_image_tag @user, :user_image, class: "img-circle icon-hover", style: "width: 195px; height: 195px;"%>
+                    <%= attachment_image_tag @user, :user_image, class: "img-circle icon-hover img-fluid", style: "width: 250px; height: 250px;"%>
                 <% else %>
-                    <%= attachment_image_tag @user, :user_image, fallback: "/images/no_image.png", class: "img-circle user-hover", style: "width: 165px; height: 165px;"%>
+                    <%= attachment_image_tag @user, :user_image, fallback: "/images/no_image.png", class: "img-circle user-hover img-fluid", style: "width: 165px; height: 165px;"%>
                 <% end %>
             </div>
 
-            <div class="col-5 ml-5 d-block user-info w-100 animated jackInTheBox">
+            <div class="col-6 col-lg-5 d-inline-block user-info w-100 animated jackInTheBox">
                 <div>
                     <div class="user-text">
                         <%= image_tag '/images/user_icon.png', size: '50x50' %> <%= @user.nickname %>
@@ -34,34 +34,30 @@
                         <% else %>
                             <%= image_tag '/images/top.png', size: '40x40' %>
                         <% end %>
-                        <p class="d-inline mr-4 ml-1">TOEIC SCORE<p class="t-score d-inline high-light"><%= @user.toeic_score %></p></p>
+                        <p class="d-inline mr-4 ml-lg-1">TOEIC SCORE<p class="t-score d-inline high-light"><%= @user.toeic_score %></p></p>
 
                         <% if @user.reading_score && @user.listening_score.present? %>
-                            <%= image_tag '/images/read.png', size: '37x35', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-2"> READING SCORE</p><p class="score d-inline"><%= @user.reading_score %></p>
+                            <%= image_tag '/images/read.png', size: '37x35', class: "mb-2 d-inline" %><p class="d-inline mr-4 ml-lg-2"> READING SCORE</p><p class="score d-inline"><%= @user.reading_score %></p>
 
-                            <%= image_tag '/images/listen.png', size: '35x35', class: "ml-3 mb-3 d-inline" %><p class="d-inline mr-3"> LISTENING SCORE</p>
-                            <p class="score d-inline"><%= @user.listening_score %></p>
+                            <div class="d-block d-lg-inline"><%= image_tag '/images/listen.png', size: '35x35', class: "ml-lg-3 mb-3 d-inline" %><p class="d-inline mr-lg-3"> LISTENING SCORE</p>
+                            <p class="score d-inline ml-2"><%= @user.listening_score %></p></div>
                         <% end %>
                     </div>
 
                     <div class="user-account">
+                        <% if current_user.id != @user.id %>
+                            <%= render partial: 'follow_form', locals: {user: @user} %>
+                        <% end %>
+
                         <%= @user.follow_count %>
                         <%= link_to "フォロー", follow_path(@user.id), class: "link" %>
                         <%= @user.followers_count %>
                         <%= link_to "フォロワー", follower_path(@user.id), class: "link" %>
-
-                        <% if current_user.id != @user.id %>
-                        <div class="btn">
-                        <%= render partial: 'follow_form', locals: {user: @user} %>
-                        </div>
-                        <% end %>
                     </div>
                     <% if current_user.id == @user.id %>
-                        <div class="profile d-inline ml-3">
-                            <%= link_to "いいね！した記事", user_articles_path(@user), class: "btn u-btn" %>
-                            <div class="d-inline ml-5">
-                                <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-info u-btn2" %>
-                            </div>
+                        <div class="d-inline d-lg-inline ml-lg-3">
+                            <%= link_to "いいね！した記事", user_articles_path(@user), class: "btn u-btn col-12 col-lg-5 ml-lg-5" %>
+                            <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-info u-btn2 col-12 col-lg-5 ml-lg-5" %>
                         </div>
                     <% end %>
                 </div>
@@ -72,19 +68,27 @@
                 <% else %>
                 <% @articles.each do |article| %>
                 <%= link_to(user_article_path(article.user_id,article.id), class: 'link') do %>
-                        <div class="d-block d-inline m-5 p-5 article d-flex align-items-center hover">
+                        <div class="col-12 d-block d-inline mt-5 p-5 article d-flex align-items-center hover">
                             <% if article.article_image.present? %>
-                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded", size: "280x220" %>
+                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', class: "rounded img-fluid", size: "280x220" %>
                             <% else %>
-                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded", size: "280x220" %>
+                                <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded img-fluid", size: "280x220" %>
                             <% end %>
                             <div class="d-inline-block col-9">
                                 <div class="d-block ml-4">
                                     <i class="far fa-clock"></i>
                                     <%= l article.created_at, format: :short %>
                                 </div>
+                                <div class="d-block" style= "color: black;">
+                                    <i class="far fa-clock ml-1 mt-2"></i>
+                                        <%= l article.created_at, format: :short %>
+                                    <div class="d-inline-block ml-3">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <%= l article.updated_at, format: :short %>
+                                    </div>
+                                </div>
                                 <div class="d-block user_article_title mt-3">
-                                    <%= "【"+article.title+"】" %>
+                                    <%= article.title %>
                                 </div>
                                 <div class="article-tag">
                                     <div class="part_list d-block ml-3 mt-4 my-2">

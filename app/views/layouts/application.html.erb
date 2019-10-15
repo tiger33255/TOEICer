@@ -5,9 +5,13 @@
     <title>TOEICer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
     <%= favicon_link_tag('favicon.ico') %>
@@ -15,32 +19,49 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag('//cdn.ckeditor.com/4.11.4/full/ckeditor.js') %>
   </head>
-
   <body>
     <div class="wrapper">
       <div class="container-fluid">
         <header class="sticky-top">
-          <div class="row mt-3">
-            <nav class="navbar navbar-light header w-100">
-              <div class="col-xl-1"></div>
-              <div class="col-xl-3 header-img">
-                <%= link_to image_tag("/images/logo.png", width: '210', height: '90', alt: "logo.png"), root_path, class: "navbar-brand header-img" %>
+          <div class="row mt-4 ml-4">
+            <nav class="navbar navbar-light header w-100 ml-sm-5 navbar-expand-sm">
+              <div class="col-3 header-img">
+                <%= link_to image_tag("/images/logo.png", width: '210', height: '90', alt: "logo.png"), root_path, class: "navbar-brand header-img float-right" %>
               </div>
-              <div class="col-4 float-right">
+              <div class="col-sm-4 col-sm-offset-1 float-right">
                   <%= search_form_for @search, url: root_path, class: "form-inline" do |f| %>
-                    <%= f.search_field :title_cont, placeholder: "Search...", class: "search form-control col-md-8" %>
+                    <%= f.search_field :title_cont, placeholder: "Search...", class: "search form-control col-8" %>
                     <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit",:class =>"btn btn-transparent search-btn col-2 ml-3" %>
                   <% end %>
               </div>
-              <div class="col-xl-4 ml-auto">
-                <div class="collapse navbar-collapse ml-auto" id="navbarNav">
-                  <ul class="navbar-nav d-inline ml-auto">
+              <div class="dropdown col offset-1 d-none d-md-block d-lg-none">
+                  <button type="button" class="btn btn btn-lg dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 30px;">
+                      MENU
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <% if user_signed_in? %>
-                      <li class="nav-item m-4"><%= link_to image_tag("/images/user_icon.png", width: '25', height: '25', alt: "user_icon.png")+" "+current_user.nickname+"　", user_path(current_user), class:"nav-link text-dark underline", style: "font-size: 16px;" %></li>
-                      <li class="nav-item m-4"><%= link_to image_tag("/images/write.png", width: '21', height: '21', alt: "write.png")+" "+"Write　", new_user_article_path(current_user.id), class:"nav-link text-dark underline" %></li>
-                      <li class="nav-item m-4"><%= link_to image_tag("/images/exit.png", width: '21', height: '21', alt: "exit.png")+" "+"Log out　", destroy_user_session_path, :method => :delete, class:"nav-link text-dark underline" %></li>
+                      <%= link_to image_tag("/images/user_icon.png", width: '25', height: '25', alt: "user_icon.png")+" "+current_user.nickname+"　", user_path(current_user), class:"dropdown-item m-4", style: "font-size: 16px;" %>
+                      <%= link_to image_tag("/images/write.png", width: '21', height: '21', alt: "write.png")+" "+"Write　", new_user_article_path(current_user.id), class:"dropdown-item m-4" %>
+                      <%= link_to image_tag("/images/exit.png", width: '21', height: '21', alt: "exit.png")+" "+"Log out　", destroy_user_session_path, :method => :delete, class:"dropdown-item m-4" %>
+                      <%= link_to " "+"TOEICerについて　", toeicer_about_path, class: "fas fa-book-open dropdown-item m-4" %>
                     <% if current_user.try(:admin?) %>
-                      <li class="nav-item m-4"><%= link_to image_tag("/images/admin.png", width: '21', height: '21', alt: "exit.png")+" "+"Admin　", rails_admin_path, class:"nav-link text-dark underline" %></li>
+                      <%= link_to image_tag("/images/admin.png", width: '21', height: '21', alt: "exit.png")+" "+"Admin　", rails_admin_path, class:"dropdown-item m-4" %>
+                    <% end %>
+                    <% else %>
+                      <%= link_to " "+"サインイン　", new_user_registration_path, class:"fas fa-user-plus text-dark dropdown-item m-4" %>
+                      <%= link_to " "+"ログイン　", new_user_session_path, class:"fas fa-sign-in-alt text-dark dropdown-item m-4" %>
+                      <%= link_to " "+"TOEICerについて　", toeicer_about_path, class: "fas fa-book-open dropdown-item m-4" %>
+                    <% end %>
+                  </div><!-- /.dropdown-menu -->
+                </div><!-- /.dropdown -->
+                <div class="collapse navbar-collapse ml-auto">
+                  <ul class="navbar-nav ml-auto d-none d-lg-block">
+                    <% if user_signed_in? %>
+                      <li class="nav-item m-3"><%= link_to image_tag("/images/user_icon.png", width: '25', height: '25', alt: "user_icon.png")+" "+current_user.nickname+"　", user_path(current_user), class:"nav-link text-dark underline", style: "font-size: 16px;" %></li>
+                      <li class="nav-item m-3"><%= link_to image_tag("/images/write.png", width: '21', height: '21', alt: "write.png")+" "+"Write　", new_user_article_path(current_user.id), class:"nav-link text-dark underline" %></li>
+                      <li class="nav-item m-3"><%= link_to image_tag("/images/exit.png", width: '21', height: '21', alt: "exit.png")+" "+"Log out　", destroy_user_session_path, :method => :delete, class:"nav-link text-dark underline" %></li>
+                    <% if current_user.try(:admin?) %>
+                      <li class="nav-item m-3"><%= link_to image_tag("/images/admin.png", width: '21', height: '21', alt: "exit.png")+" "+"Admin　", rails_admin_path, class:"nav-link text-dark underline" %></li>
                     <% end %>
                     <% else %>
                       <li class="nav-item m-4"><%= link_to " "+"サインイン　", new_user_registration_path, class:"fas fa-user-plus nav-link text-dark underline" %></li>
@@ -48,7 +69,6 @@
                     <% end %>
                   </ul>
                 </div>
-              </div>
             </nav>
           </div>
       </div>
@@ -60,5 +80,6 @@
         </div>
       </footer>
     </div>
+    </div>
   </body>
-</html>
+  </html>
