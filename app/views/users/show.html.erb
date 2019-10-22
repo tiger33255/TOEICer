@@ -75,10 +75,6 @@
                                 <%= attachment_image_tag article, :article_image,　format: 'jpeg/png', fallback: "/images/article_eyecatch.png", class: "rounded img-fluid", size: "280x220" %>
                             <% end %>
                             <div class="d-inline-block col-9">
-                                <div class="d-block ml-4">
-                                    <i class="far fa-clock"></i>
-                                    <%= l article.created_at, format: :short %>
-                                </div>
                                 <div class="d-block" style= "color: black;">
                                     <i class="far fa-clock ml-1 mt-2"></i>
                                         <%= l article.created_at, format: :short %>

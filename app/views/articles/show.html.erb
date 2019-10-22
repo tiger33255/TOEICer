@@ -2,7 +2,7 @@
     <div class="row mb-4">
         <div class="col-auto d-inline-block clip-box-a" style="color: black;">
             <%= link_to(user_path(@article.user_id), class: "link") do %>
-            <div class=" d-block col-3 garticle_writer underline p-2 ml-4 text-center" style="font-size: 20px;">
+            <div class=" d-block col-3 article_writer underline p-2 ml-4 text-center" style="font-size: 20px;">
                 投稿者： <%= @article.user.nickname %>さん
             </div>
             <% end %>

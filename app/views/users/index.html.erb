@@ -55,6 +55,10 @@
       </div>
 
   <% else %>
+  <% if flash[:warning] && unless user_signed_in?%>
+    <div class="alert alert-warning text-center" role="alert"><strong><%= flash[:warning] %></strong></div>
+<% end %>
+<% end %>
   <div class="top-img d-none d-lg-block">
     <%= image_tag '/images/quote.jpg', size: "1440x700" %>
     <%= link_to "ABOUT TOEICer", toeicer_about_path, class: "animated bounce link underline t-about" %>

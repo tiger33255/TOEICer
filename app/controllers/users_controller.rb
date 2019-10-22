@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :redirect_root, only: [:show]
+
     def index
         @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(9).pluck(:article_id))
         @new_articles = Article.all.order(created_at: :desc).limit(9)
@@ -43,5 +45,10 @@ class UsersController < ApplicationController
 private
     def user_params
         params.require(:user).permit(:last_name, :first_name, :nickname, :toeic_score, :reading_score, :listening_score, :user_image, :word)
+    end
+
+    def redirect_root
+        flash[:warning] = "ログイン済ユーザーのみ投稿者のマイページを確認できます！"
+        redirect_to root_path unless user_signed_in?
     end
 end
