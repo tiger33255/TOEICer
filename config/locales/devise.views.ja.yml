@@ -11,6 +11,8 @@ ja:
         last_name: "名前（名）"
         nickname: "ニックネーム"
         toeic_score: "TOEICスコア"
+        reading_score: "リーディングスコア"
+        listening_score: "リスニングスコア"
         image: "ユーザーアイコン"
     models:
       user: "お客様のデータ"

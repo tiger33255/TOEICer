@@ -24,7 +24,18 @@ class User < ApplicationRecord
       greater_than: 0,
       less_than_or_equal_to: 990,
     }
-
+    validates :reading_score,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than_or_equal_to: 445,
+    }
+    validates :listening_score,
+    numericality: {
+      only_integer: true,
+      greater_than: 0,
+      less_than_or_equal_to: 445,
+    }
   has_many :articles, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_articles, through: :likes, source: :article

@@ -95,7 +95,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
 
-gem 'simple_form'
+gem 'simple_form' #Ckeditorのため
 
 gem 'rails_admin', '~> 2.0'
 
@@ -103,7 +103,8 @@ gem 'cancancan'
 
 gem 'gimei'
 
-gem 'json'
+gem 'json' # CKeditorでの画像アップロードのため
+
 
 # group :production do
 #   gem 'mysql2'
